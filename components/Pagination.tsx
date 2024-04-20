@@ -55,7 +55,7 @@ export const Pagination = ({
           <div className="flex ml-4 px-3">
             {Array.from({ length: totalPages }, (_, index) => index + 1).map(
               (page) => (
-                <div className="p-1">
+                <div key={page} className="p-1">
                   <button
                     key={page}
                     onClick={() => handlePageClick(page)}
