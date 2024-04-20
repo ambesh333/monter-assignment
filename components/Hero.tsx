@@ -1,6 +1,6 @@
 "use client";
 
-import { data } from "../app/data/page";
+import { data } from "../app/Data";
 import { Pagination } from "./Pagination";
 import { useState, Dispatch, SetStateAction } from "react";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
