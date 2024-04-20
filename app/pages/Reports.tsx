@@ -1,14 +1,12 @@
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
-// import Pagination from "@/components/Pagination";
 
 export default function Reports() {
   return (
     <>
-      <div className="bg-gray-100 rounded flex-col ">
+      <div className="bg-gray-100 rounded flex-col mt-2">
         <Navbar />
         <Hero />
-        {/* <Pagination /> */}
       </div>
     </>
   );

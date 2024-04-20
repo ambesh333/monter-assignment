@@ -1,7 +1,9 @@
 "use client";
+
 import { data } from "../app/data/page";
 import { Pagination } from "./Pagination";
 import { useState, Dispatch, SetStateAction } from "react";
+import { HiOutlineDocumentDownload } from "react-icons/hi";
 type DataItem = {
   date: string;
   time: string;
@@ -23,44 +25,51 @@ const Table: React.FC<TableProps> = ({ data, currentPage, itemsPerPage }) => {
   const endIndex = startIndex + itemsPerPage;
   const currentData = data.slice(startIndex, endIndex);
   return (
-    <table className="w-full border-collapse text-left">
-      <thead>
-        <tr className="bg-gray-200">
-          <th className="px-4 py-2">Date</th>
-          <th className="px-4 py-2">Report Name</th>
-          <th className="px-4 py-2">Download</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentData.map((item, index) => (
-          <tr key={index}>
-            <td className="px-4 py-2 border-b border-gray-300">
-              {item.date} {item.time}
-            </td>
-            <td className="px-4 py-2 border-b border-gray-300">
-              {item.reportName}
-            </td>
-            <td className="px-4 py-2 border-b border-gray-300">
-              <a
-                href={item.downloadLink}
-                className="text-blue-500 hover:underline"
-              >
-                Download
-              </a>
-            </td>
+    <div className="min-h-[60vh]">
+      <table className="w-full border-collapse text-left">
+        <thead>
+          <tr className="bg-gray-200">
+            <th className="px-4 py-2">Date</th>
+            <th className="px-4 py-2">Report Name</th>
+            <th className="px-4 py-2">Download</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {currentData.map((item, index) => (
+            <tr key={index}>
+              <td className="px-4 py-2 my-3 flex flex-col ">
+                <span className="block text-grey-300 text-md font-medium mr-2">
+                  {item.date}
+                </span>
+                <span className="block text-sm">{item.time}</span>
+              </td>
+              <td className="px-4 py-2">{item.reportName}</td>
+              <td className="px-4 py-2">
+                <a
+                  href="https://1drv.ms/x/s!AtUkWZ1nf4H3kBTsGW8BrtWMMEQF?e=SPlqeJ"
+                  className="text-grey-100 hover:underline"
+                >
+                  <HiOutlineDocumentDownload
+                    className="h-8 w-8"
+                    color="grey-100"
+                  />
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
 export default function Hero() {
-  const itemsPerPage = 5;
+  const [itemsPerPage, setItemsPerPage]: [PageNumber, SetPageNumber] =
+    useState(5);
   const [currentPage, setCurrentPage]: [PageNumber, SetPageNumber] =
     useState(1);
   return (
-    <div className="p-4">
+    <div className="py-10">
       <Table
         data={data}
         currentPage={currentPage}
@@ -71,6 +80,7 @@ export default function Hero() {
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
+        setItemsPerPage={setItemsPerPage}
       />
     </div>
   );
